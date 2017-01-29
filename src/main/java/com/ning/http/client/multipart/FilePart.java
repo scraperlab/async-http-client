@@ -101,7 +101,7 @@ public class FilePart extends AbstractFilePart {
 
         handler.start();
 
-        long length = 0;
+        int length = 0;
 
         length += MultipartUtils.writeBytesToChannel(target, generateFileStart(boundary));
 
