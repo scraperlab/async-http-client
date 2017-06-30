@@ -49,6 +49,7 @@ import com.ning.http.util.StringUtils;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public final class NettyRequestFactory {
@@ -225,6 +226,7 @@ public final class NettyRequestFactory {
         addAuthorizationHeader(headers, perRequestAuthorizationHeader(request, uri, realm));
 
         setProxyAuthorizationHeader(headers, perRequestProxyAuthorizationHeader(request, realm, proxyServer, connect));
+        setProxyHeaders(headers, proxyServer);
 
         // Add default accept headers
         if (!headers.contains(HttpHeaders.Names.ACCEPT))
@@ -235,5 +237,15 @@ public final class NettyRequestFactory {
             headers.set(HttpHeaders.Names.USER_AGENT, config.getUserAgent());
 
         return nettyRequest;
+    }
+
+    public void setProxyHeaders(HttpHeaders headers, ProxyServer proxyServer) {
+        if (proxyServer != null) {
+            List<Map.Entry<String,String>> ph = proxyServer.getHeaders();
+            if (!ph.isEmpty()) {
+                for (Map.Entry<String,String> entry: ph)
+                    headers.add(entry.getKey(), entry.getValue());
+            }
+        }
     }
 }

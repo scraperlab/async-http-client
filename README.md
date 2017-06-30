@@ -1,6 +1,9 @@
 Async Http Client
 -----------------
 
+UPDATE BY scraperlab: adding proxy headers support.
+
+
 Getting started [HTML](http://sonatype.github.com/async-http-client/) [PDF](http://is.gd/kexrN)
 
 Async Http Client library purpose is to allow Java applications to easily execute HTTP requests and asynchronously process the HTTP responses. The library also supports the WebSocket Protocol. The Async HTTP Client library is simple to use. First, in order to add it to your Maven project, simply add this dependency:

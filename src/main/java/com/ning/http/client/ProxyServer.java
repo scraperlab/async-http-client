@@ -19,11 +19,13 @@ package com.ning.http.client;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.ning.http.client.Realm.AuthScheme;
+import org.jboss.netty.handler.codec.http.DefaultHttpMessage;
+import org.jboss.netty.handler.codec.http.DefaultHttpRequest;
+import org.jboss.netty.handler.codec.http.HttpHeaders;
+import org.jboss.netty.handler.codec.http.HttpVersion;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents a proxy server.
@@ -61,6 +63,7 @@ public class ProxyServer {
     private String ntlmHost;
     private AuthScheme scheme = AuthScheme.BASIC;
     private boolean forceHttp10 = false;
+    private List<Map.Entry<String,String>> proxyheaders;
 
     public ProxyServer(final Protocol protocol, final String host, final int port, String principal, String password) {
         this.protocol = protocol;
@@ -69,6 +72,7 @@ public class ProxyServer {
         this.principal = principal;
         this.password = password;
         this.url = protocol + "://" + host + ":" + port;
+        this.proxyheaders = new LinkedList<Map.Entry<String,String>>();
     }
 
     public ProxyServer(final String host, final int port, String principal, String password) {
@@ -176,6 +180,14 @@ public class ProxyServer {
     @Override
     public String toString() {
         return url;
+    }
+
+    public void setHeaders(List<Map.Entry<String,String>> headers) {
+        this.proxyheaders = headers;
+    }
+
+    public List<Map.Entry<String,String>> getHeaders() {
+        return this.proxyheaders;
     }
 }
 

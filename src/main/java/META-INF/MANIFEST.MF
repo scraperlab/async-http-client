@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: guava-11.0.2.jar netty-3.10.6.Final.jar connection-pool-2.
+ 3.26.jar slf4j-api-1.7.12.jar grizzly-http-2.3.26.jar grizzly-websock
+ ets-2.3.26.jar jsr305-1.3.9.jar grizzly-framework-2.3.26.jar
+Main-Class: 
+

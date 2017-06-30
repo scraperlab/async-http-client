@@ -14,6 +14,8 @@
 nbproject
 .DS_Store
 target
+classes
+prod
 test-output
 /META-INF/MANIFEST.MF
 work
